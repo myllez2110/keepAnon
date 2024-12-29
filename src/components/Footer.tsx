@@ -7,7 +7,7 @@ export function Footer() {
       <div className="container mx-auto flex items-center justify-between text-sm text-zinc-500">
         <p>© {new Date().getFullYear()} Anonymizer</p>
         <a
-          href="https://github.com"
+          href="https://github.com/myllez2110"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 hover:text-white transition-colors"
