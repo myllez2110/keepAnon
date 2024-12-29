@@ -18,6 +18,6 @@
 
 ## Before and After
 
-Here is a visual comparison of the application’s user interface before and after improvements:
+Here is a visual comparison of the application’s use.
 
 ![Before and After](https://media.discordapp.net/attachments/890375793069412364/1323051772088156342/a.png?ex=67731b7b&is=6771c9fb&hm=f5bda4d1bb905672286dae8400cf605901c300e4706370b8e6c8a18fe42d883d&=&format=webp&quality=lossless&width=799&height=449)
