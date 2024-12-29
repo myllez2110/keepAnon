@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { Upload, X, Download } from 'lucide-react';
 import { FileDropzone } from './components/FileDropzone';
 import { Footer } from './components/Footer';
-import { removeMetadata } from './utils/metadata';
+import axios from 'axios';
 
 function App() {
   const [file, setFile] = useState<File | null>(null);
@@ -18,11 +18,25 @@ function App() {
 
   const handleProcess = async () => {
     if (!file) return;
-    
+
     setProcessing(true);
     try {
-      const cleanedFile = await removeMetadata(file);
-      setCleanFile(cleanedFile);
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const response = await axios.post(
+        'https://keepanonbackend.onrender.com/upload',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          responseType: 'blob', 
+        }
+      );
+
+      const cleanedFile = response.data;
+      setCleanFile(cleanedFile); 
     } catch (error) {
       console.error('Error processing file:', error);
     } finally {
@@ -32,15 +46,15 @@ function App() {
 
   const handleDownload = () => {
     if (!cleanFile) return;
-    
+
     const url = URL.createObjectURL(cleanFile);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `clean_${file?.name}`;
+    a.download = `clean_${file?.name}`; 
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    URL.revokeObjectURL(url); 
   };
 
   const handleClear = () => {
